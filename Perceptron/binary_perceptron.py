@@ -19,11 +19,11 @@ from sklearn.metrics import accuracy_score
 class Perceptron(object):
 
     def __init__(self):
-        self.learning_step = 0.00001
-        self.max_iteration = 5000
+        self.learning_step = 0.00001 #学习率
+        self.max_iteration = 5000  #最大的循环次数
 
     def predict_(self, x):
-        wx = sum([self.w[j] * x[j] for j in range(len(self.w))])
+        wx = sum([self.w[j] * x[j] for j in range(len(self.w))]) #计算是否满足要求
         return int(wx > 0)
 
     def train(self, features, labels):
@@ -33,7 +33,7 @@ class Perceptron(object):
         time = 0
 
         while time < self.max_iteration:
-            index = random.randint(0, len(labels) - 1)
+            index = random.randint(0, len(labels) - 1) #随机选取一个数据
             x = list(features[index])
             x.append(1.0)
             y = 2 * labels[index] - 1
@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     time_1 = time.time()
 
-    raw_data = pd.read_csv('../data/train_binary.csv', header=0)
+    raw_data = pd.read_csv('train_binary.csv', header=0)
     data = raw_data.values
 
     imgs = data[0::, 1::]
